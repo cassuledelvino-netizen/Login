@@ -1,0 +1,72 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Acessar o Sistema";
+}
+
+<div class="login-container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 rounded-4 p-4" style="width: 100%; max-width: 420px;">
+        <div class="card-body">
+            
+            <!-- Cabeçalho / Logo -->
+            <div class="text-center mb-4">
+                <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                    <i class="bi bi-person-fill fs-2"></i>
+                </div>
+                <h4 class="fw-bold text-dark mb-1">Bem-vindo de volta!</h4>
+                <p class="text-muted small">Insira seus dados para continuar</p>
+            </div>
+
+            <!-- Formulário de Login -->
+            <form id="account" method="post" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger small mb-3" role="alert"></div>
+
+                <!-- Campo E-mail -->
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="nome@exemplo.com" />
+                    <label asp-for="Input.Email" class="form-label">Endereço de E-mail</label>
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+
+                <!-- Campo Senha -->
+                <div class="form-floating mb-3">
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Senha" />
+                    <label asp-for="Input.Password" class="form-label">Sua Senha</label>
+                    <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                </div>
+
+                <!-- Lembrar-me e Esqueceu a Senha -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        <label class="form-check-label text-secondary small" asp-for="Input.RememberMe">
+                            Lembrar-me
+                        </label>
+                    </div>
+                    <a id="forgot-password" asp-page="./ForgotPassword" class="text-decoration-none small text-primary fw-semibold">
+                        Esqueceu a senha?
+                    </a>
+                </div>
+
+                <!-- Botão de Entrar -->
+                <button id="login-submit" type="submit" class="btn btn-primary w-100 py-2.5 fw-bold rounded-3 shadow-sm mb-3">
+                    Entrar
+                </button>
+
+                <!-- Link de Cadastro -->
+                <div class="text-center pt-2 border-top">
+                    <span class="text-muted small">Ainda não tem uma conta?</span>
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="text-decoration-none small fw-bold text-primary ms-1">
+                        Cadastre-se
+                    </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
